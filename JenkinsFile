@@ -19,7 +19,7 @@ pipeline {
         stage('Exécuter le script PHP') {
             steps {
                 // Exécuter votre script PHP
-                sh 'php mon_script.php'
+                sh 'php test.php'
             }
         }
 
