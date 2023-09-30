@@ -12,7 +12,7 @@ pipeline {
         stage('test') {
             steps {
                 // Exécuter Composer pour installer les dépendances
-                 bat 'php test.php'
+                 bat 'php -l test.php' 
             }
         }
 
