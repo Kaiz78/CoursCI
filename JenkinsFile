@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Récupérer le code source depuis Git
+                // Récupérer le code source depuis Gits
                 checkout scm
             }
         }
