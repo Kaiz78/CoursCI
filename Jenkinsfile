@@ -5,14 +5,14 @@ pipeline {
         stage('Verify version') {
             steps {
                 // Récupérer le code source depuis Gits
-                sh 'php --version'
+                 php --version
             }
         }
 
         stage('test') {
             steps {
                 // Exécuter Composer pour installer les dépendances
-                sh php test.php
+                 php test.php
             }
         }
 
