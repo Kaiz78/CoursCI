@@ -2,40 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Verify version') {
             steps {
                 // Récupérer le code source depuis Gits
-                checkout scm
+                sh 'php --version'
             }
         }
 
-        stage('Installer les dépendances') {
+        stage('test') {
             steps {
                 // Exécuter Composer pour installer les dépendances
-                sh 'composer install'
+                sh php test.php
             }
         }
 
-        stage('Exécuter le script PHP') {
-            steps {
-                // Exécuter votre script PHP
-                sh 'php test.php'
-            }
-        }
-
-        // Ajoutez d'autres étapes de build, de test, ou de déploiement ici si nécessaire
+        
     }
 
-    post {
-        success {
-            // Actions à effectuer en cas de build réussi
-            echo 'Le build a réussi !'
-            // Vous pouvez ajouter des notifications ou des déploiements ici
-        }
-        failure {
-            // Actions à effectuer en cas d'échec du build
-            echo 'Le build a échoué.'
-            // Vous pouvez ajouter des notifications ou des actions de correction ici
-        }
-    }
 }
