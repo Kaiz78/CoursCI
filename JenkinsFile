@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Récupérer le code source depuis Git
+                checkout scm
+            }
+        }
+
+        stage('Installer les dépendances') {
+            steps {
+                // Exécuter Composer pour installer les dépendances
+                sh 'composer install'
+            }
+        }
+
+        stage('Exécuter le script PHP') {
+            steps {
+                // Exécuter votre script PHP
+                sh 'php mon_script.php'
+            }
+        }
+
+        // Ajoutez d'autres étapes de build, de test, ou de déploiement ici si nécessaire
+    }
+
+    post {
+        success {
+            // Actions à effectuer en cas de build réussi
+            echo 'Le build a réussi !'
+            // Vous pouvez ajouter des notifications ou des déploiements ici
+        }
+        failure {
+            // Actions à effectuer en cas d'échec du build
+            echo 'Le build a échoué.'
+            // Vous pouvez ajouter des notifications ou des actions de correction ici
+        }
+    }
+}
