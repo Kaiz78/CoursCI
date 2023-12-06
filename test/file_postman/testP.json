@@ -1,0 +1,2037 @@
+{
+	"info": {
+		"_postman_id": "305ef04a-0d12-46f7-8072-886b774a204b",
+		"name": "TEST AletWork",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13186043"
+	},
+	"item": [
+		{
+			"name": "Test Login Success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r",
+							"pm.test(\"Récupération du token\", function () {\r",
+							"// Convertir la réponse en JSON\r",
+							"var responseBody = pm.response.json();\r",
+							"// Vérifier si la réponse contient un token\r",
+							"if (responseBody.access_token) {\r",
+							"// Stocker le token dans une variable\r",
+							"pm.environment.set(\"token\", responseBody.access_token);\r",
+							"} else {\r",
+							"console.log(\"Aucun token\")\r",
+							"pm.environment.set(\"token\", \"Auncun token\");\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/logins",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"logins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Refresh",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r",
+							"pm.test(\"Récupération du token\", function () {\r",
+							"// Convertir la réponse en JSON\r",
+							"var responseBody = pm.response.json();\r",
+							"// Vérifier si la réponse contient un token\r",
+							"if (responseBody.access_token) {\r",
+							"// Stocker le token dans une variable\r",
+							"pm.environment.set(\"token\", responseBody.access_token);\r",
+							"} else {\r",
+							"console.log(\"Aucun token\")\r",
+							"pm.environment.set(\"token\", \"Auncun token\");\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/refresh",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTcwMDk1NjAyMywiZXhwIjoxNzAxMDQyNDIzLCJuYmYiOjE3MDA5NTYwMjMsImp0aSI6IlNPem1LSzdKVVBGS1JsNEIiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.ZaghHfb3zNDanHY4LVfnmqNAFuwxYv_oj3mOuKldHrM",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "organization_name",
+							"value": "OHDD",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/logout",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "test2",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "test2",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test2@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/register",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Verify Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/verifyAccount?token=test",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"verifyAccount"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test send mail new Password Forgot",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/passwordForgot",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"passwordForgot"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Teams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/teams",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Teams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/teams",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Teams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/teams",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Teams Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/teams/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"teams",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Teams users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/teamsUsers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"teamsUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Teams Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/teamsUsers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"teamsUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Teams Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/teamsUsers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"teamsUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/tasks",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/tasks",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/tasks",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/tasks",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Tasks Comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/taskComments/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"taskComments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Tasks Comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/taskComments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"taskComments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Tasks Comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/taskComments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"taskComments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Tasks Comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/taskComments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"taskComments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Projects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/projects",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Projects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/projects",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Projects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/projects",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Projects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/projects",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Milestone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/milestone",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"milestone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Milestone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/milestone",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"milestone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Milestone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/milestone",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"milestone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Access Milestone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Vérification des codes d'erreur\", function () {\r",
+							"// Récupérer le code de réponse\r",
+							"var responseCode = pm.response.code;\r",
+							"// Vérifier si le code de réponse est 500 ou 405 et déclencher une erreur si c'est le cas\r",
+							"if (responseCode === 500 || responseCode === 405) {\r",
+							"pm.expect.fail(\"La réponse contient un code d'erreur : \" + responseCode);\r",
+							"}\r",
+							"});\r"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "undefined",
+							"type": "any"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "jane_doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "janedoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "30test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/milestone",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"milestone"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -9,10 +9,11 @@ pipeline {
             }
         }
 
-        stage('test') {
+        stage('launch test') {
             steps {
                 // Exécuter Composer pour installer les dépendancess
-                 bat 'php -l test.php' 
+                bat 'cd test '
+                bat 'newman run tests_postman.json -e environment.json' 
             }
         }
 

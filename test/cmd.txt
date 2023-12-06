@@ -1,0 +1,4 @@
+- php [writeTestPostman.php]
+
+- newman run [nom_fichier.json] -e [nom_environment].json 
+

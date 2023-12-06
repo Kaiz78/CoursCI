@@ -1,0 +1,376 @@
+{
+    "info": {
+        "_postman_id": "183494da-afcc-4576-9aa1-a9b56160a72d",
+        "name": "TEST ZOE",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
+        "_exporter_id": "13186043"
+    },
+    "item": [
+        {
+            "name": "Test 1",
+            "request": {
+                "method": "GET",
+                "body": {
+                    "mode": "formdata",
+                    "formdata": []
+                },
+                "url": {
+                    "raw": "{{host}}\/{{front}}\/user\/login",
+                    "host": [
+                        "{{host}}"
+                    ],
+                    "path": [
+                        "{{front}}",
+                        "user",
+                        "login"
+                    ]
+                }
+            },
+            "response": [],
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Test for Test 1V\u00e9rifcation d'une erreur PHP\", function () {\r",
+                            "    var responseText = pm.response.text(); \/\/ R\u00e9cup\u00e9rez le contenu de la r\u00e9ponse\r",
+                            "\r",
+                            "    \/\/ On v\u00e9rifie s'il y'a une \"ERREUR FATALE DANS VOTRE CODE\"\r",
+                            "    if (responseText.includes(\"ERREUR FATALE DANS VOTRE CODE\")) {\r",
+                            "        \/\/ on enregistre le contenu de l'erreur\r",
+                            "        \r",
+                            "        pm.environment.set(\"debugInfoLogin\", responseText);\r",
+                            "        pm.expect(\"check variable debugInfoLogin\").to.be.false; \/\/ Le test \u00e9choue\r",
+                            "    } else {\r",
+                            "        pm.expect(true).to.be.true; \/\/ Le test r\u00e9ussie\r",
+                            "    }\r",
+                            "});\r",
+                            "\r",
+                            "\r",
+                            ""
+                        ],
+                        "type": "text\/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Test 2",
+            "request": {
+                "method": "POST",
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "username",
+                            "value": "jane_doe",
+                            "type": "text"
+                        },
+                        {
+                            "key": "age",
+                            "value": "30",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{host}}\/{{front}}\/user\/login",
+                    "host": [
+                        "{{host}}"
+                    ],
+                    "path": [
+                        "{{front}}",
+                        "user",
+                        "login"
+                    ]
+                }
+            },
+            "response": [],
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Test for Test 2V\u00e9rifcation d'une erreur PHP\", function () {\r",
+                            "    var responseText = pm.response.text(); \/\/ R\u00e9cup\u00e9rez le contenu de la r\u00e9ponse\r",
+                            "\r",
+                            "    \/\/ On v\u00e9rifie s'il y'a une \"ERREUR FATALE DANS VOTRE CODE\"\r",
+                            "    if (responseText.includes(\"ERREUR FATALE DANS VOTRE CODE\")) {\r",
+                            "        \/\/ on enregistre le contenu de l'erreur\r",
+                            "        \r",
+                            "        pm.environment.set(\"debugInfoLogin\", responseText);\r",
+                            "        pm.expect(\"check variable debugInfoLogin\").to.be.false; \/\/ Le test \u00e9choue\r",
+                            "    } else {\r",
+                            "        pm.expect(true).to.be.true; \/\/ Le test r\u00e9ussie\r",
+                            "    }\r",
+                            "});\r",
+                            "\r",
+                            "\r",
+                            ""
+                        ],
+                        "type": "text\/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Test 3",
+            "request": {
+                "method": "POST",
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "email",
+                            "value": "jane_doe",
+                            "type": "text"
+                        },
+                        {
+                            "key": "password",
+                            "value": "30",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{host}}\/{{front}}\/user\/login",
+                    "host": [
+                        "{{host}}"
+                    ],
+                    "path": [
+                        "{{front}}",
+                        "user",
+                        "login"
+                    ]
+                }
+            },
+            "response": [],
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Test for Test 3V\u00e9rifcation d'une erreur PHP\", function () {\r",
+                            "    var responseText = pm.response.text(); \/\/ R\u00e9cup\u00e9rez le contenu de la r\u00e9ponse\r",
+                            "\r",
+                            "    \/\/ On v\u00e9rifie s'il y'a une \"ERREUR FATALE DANS VOTRE CODE\"\r",
+                            "    if (responseText.includes(\"ERREUR FATALE DANS VOTRE CODE\")) {\r",
+                            "        \/\/ on enregistre le contenu de l'erreur\r",
+                            "        \r",
+                            "        pm.environment.set(\"debugInfoLogin\", responseText);\r",
+                            "        pm.expect(\"check variable debugInfoLogin\").to.be.false; \/\/ Le test \u00e9choue\r",
+                            "    } else {\r",
+                            "        pm.expect(true).to.be.true; \/\/ Le test r\u00e9ussie\r",
+                            "    }\r",
+                            "});\r",
+                            "\r",
+                            "\r",
+                            ""
+                        ],
+                        "type": "text\/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Test 3",
+            "request": {
+                "method": "GET",
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "email",
+                            "value": "jane_doe",
+                            "type": "text"
+                        },
+                        {
+                            "key": "password",
+                            "value": "30",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{host}}\/{{front}}\/user\/login\/subscribe",
+                    "host": [
+                        "{{host}}"
+                    ],
+                    "path": [
+                        "{{front}}",
+                        "user",
+                        "login",
+                        "subscribe"
+                    ]
+                }
+            },
+            "response": [],
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Test for Test 3V\u00e9rifcation d'une erreur PHP\", function () {\r",
+                            "    var responseText = pm.response.text(); \/\/ R\u00e9cup\u00e9rez le contenu de la r\u00e9ponse\r",
+                            "\r",
+                            "    \/\/ On v\u00e9rifie s'il y'a une \"ERREUR FATALE DANS VOTRE CODE\"\r",
+                            "    if (responseText.includes(\"ERREUR FATALE DANS VOTRE CODE\")) {\r",
+                            "        \/\/ on enregistre le contenu de l'erreur\r",
+                            "        \r",
+                            "        pm.environment.set(\"debugInfoLogin\", responseText);\r",
+                            "        pm.expect(\"check variable debugInfoLogin\").to.be.false; \/\/ Le test \u00e9choue\r",
+                            "    } else {\r",
+                            "        pm.expect(true).to.be.true; \/\/ Le test r\u00e9ussie\r",
+                            "    }\r",
+                            "});\r",
+                            "\r",
+                            "\r",
+                            ""
+                        ],
+                        "type": "text\/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Test 3",
+            "request": {
+                "method": "POST",
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "firstname",
+                            "value": "test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test",
+                            "type": "text"
+                        },
+                        {
+                            "key": "lastname",
+                            "value": "test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test",
+                            "type": "text"
+                        },
+                        {
+                            "key": "email",
+                            "value": "test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255@test.fr",
+                            "type": "text"
+                        },
+                        {
+                            "key": "password",
+                            "value": "test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test255test@test.fr",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{host}}\/{{front}}\/user\/login\/subscribe",
+                    "host": [
+                        "{{host}}"
+                    ],
+                    "path": [
+                        "{{front}}",
+                        "user",
+                        "login",
+                        "subscribe"
+                    ]
+                }
+            },
+            "response": [],
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Test for Test 3V\u00e9rifcation d'une erreur PHP\", function () {\r",
+                            "    var responseText = pm.response.text(); \/\/ R\u00e9cup\u00e9rez le contenu de la r\u00e9ponse\r",
+                            "\r",
+                            "    \/\/ On v\u00e9rifie s'il y'a une \"ERREUR FATALE DANS VOTRE CODE\"\r",
+                            "    if (responseText.includes(\"ERREUR FATALE DANS VOTRE CODE\")) {\r",
+                            "        \/\/ on enregistre le contenu de l'erreur\r",
+                            "        \r",
+                            "        pm.environment.set(\"debugInfoLogin\", responseText);\r",
+                            "        pm.expect(\"check variable debugInfoLogin\").to.be.false; \/\/ Le test \u00e9choue\r",
+                            "    } else {\r",
+                            "        pm.expect(true).to.be.true; \/\/ Le test r\u00e9ussie\r",
+                            "    }\r",
+                            "});\r",
+                            "\r",
+                            "\r",
+                            ""
+                        ],
+                        "type": "text\/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Test 3",
+            "request": {
+                "method": "POST",
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "firstname",
+                            "value": "jane_doe",
+                            "type": "text"
+                        },
+                        {
+                            "key": "lastname",
+                            "value": "jane_doe",
+                            "type": "text"
+                        },
+                        {
+                            "key": "email",
+                            "value": "janedoe@gmail.com",
+                            "type": "text"
+                        },
+                        {
+                            "key": "password",
+                            "value": "30test",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{host}}\/{{front}}\/user\/login\/subscribe",
+                    "host": [
+                        "{{host}}"
+                    ],
+                    "path": [
+                        "{{front}}",
+                        "user",
+                        "login",
+                        "subscribe"
+                    ]
+                }
+            },
+            "response": [],
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"Test for Test 3V\u00e9rifcation d'une erreur PHP\", function () {\r",
+                            "    var responseText = pm.response.text(); \/\/ R\u00e9cup\u00e9rez le contenu de la r\u00e9ponse\r",
+                            "\r",
+                            "    \/\/ On v\u00e9rifie s'il y'a une \"ERREUR FATALE DANS VOTRE CODE\"\r",
+                            "    if (responseText.includes(\"ERREUR FATALE DANS VOTRE CODE\")) {\r",
+                            "        \/\/ on enregistre le contenu de l'erreur\r",
+                            "        \r",
+                            "        pm.environment.set(\"debugInfoLogin\", responseText);\r",
+                            "        pm.expect(\"check variable debugInfoLogin\").to.be.false; \/\/ Le test \u00e9choue\r",
+                            "    } else {\r",
+                            "        pm.expect(true).to.be.true; \/\/ Le test r\u00e9ussie\r",
+                            "    }\r",
+                            "});\r",
+                            "\r",
+                            "\r",
+                            ""
+                        ],
+                        "type": "text\/javascript"
+                    }
+                }
+            ]
+        }
+    ]
+}

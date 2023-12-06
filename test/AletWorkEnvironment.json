@@ -1,0 +1,27 @@
+{
+	"id": "247b37cb-1238-40ec-b75e-2d74e1e69a23",
+	"name": "AletWork",
+	"values": [
+		{
+			"key": "host",
+			"value": "localhost:8000/api",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "debugInfoLogin",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-11-25T21:28:40.810Z",
+	"_postman_exported_using": "Postman/10.20.3"
+}

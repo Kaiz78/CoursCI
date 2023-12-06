@@ -1,0 +1,27 @@
+{
+	"id": "5e240ec9-abfd-45dd-aac7-99fb46a98dd3",
+	"name": "ZOE",
+	"values": [
+		{
+			"key": "host",
+			"value": "localhost/projet/zoe_1.0",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "front",
+			"value": "index.php",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "debugInfoLogin",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-11-24T14:10:31.605Z",
+	"_postman_exported_using": "Postman/10.20.3"
+}
