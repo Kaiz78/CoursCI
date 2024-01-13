@@ -1,19 +1,17 @@
+// Sur jenkins j'execute un script bat pour lancer les tests postman
+
 pipeline {
     agent any
 
     stages {
-        stage('Verify version') {
-            steps {
-                // Récupérer le code source depuis Gits
-                 bat 'php --version'
-            }
-        }
 
-        stage('launch test') {
+        stage('deploy') {
             steps {
-                // Exécuter Composer pour installer les dépendancess
-                bat 'cd test '
-                bat 'newman run tests_postman.json -e environment.json' 
+                // Envoyer le code source depuis le serveur de build vers le serveur de production
+                script {
+                    // Copier les fichiers vers le serveur de production
+                    sh 'scp -r /var/lib/jenkins/workspace/Automated-Pipeline ubuntu@13.39.51.174:test'
+                }
             }
         }
 
