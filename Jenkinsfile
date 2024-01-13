@@ -7,9 +7,11 @@ pipeline {
             steps {
                 // Envoyer le code source depuis le serveur de build vers le serveur de production
                 script {
-                    // Copier les fichiers vers le serveur de production
+                    echo 'Avant la commande scp'
                     sh 'scp -r /var/lib/jenkins/workspace/Automated-Pipeline ubuntu@13.39.51.174:test'
+                    echo 'Après la commande scp'
                 }
+
             }
         }
 
