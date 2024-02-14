@@ -9,8 +9,7 @@ pipeline {
                 // Envoyer le code source depuis le serveur de build vers le serveur de production
                 script {
                     echo 'Avant la commande scp'
-                    sh 'dir'
-                    echo 'Après la commande scp'
+                    echo 'dir'
                 }
 
             }
