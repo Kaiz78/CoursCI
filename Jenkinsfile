@@ -10,7 +10,7 @@ pipeline {
                 script {
                     echo 'Avant la commande scp'
                     withCredentials([string(credentialsId: 'password-preprod', variable: 'MOT_DE_PASSE_SUDO')]) {
-                        bat 'ssh amine@ns3173836.ip-51-195-234.eu'
+                        bat 'ssh -tt amine@ns3173836.ip-51-195-234.eu'
                     }
                 }
 
