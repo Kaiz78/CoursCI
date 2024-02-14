@@ -1,29 +1,23 @@
+// Sur jenkins j'execute un script bat pour lancer les tests postman
+
 pipeline {
     agent any
-    stages{
-        stage("Clone Code"){
-            steps{
-                git url: "https://github.com/Kaiz78/CoursCI", branch: "main"
+
+    tools {nodejs "nodejs"}
+    
+    stages {
+        stage('deploy') {
+            steps {
+                // Envoyer le code source depuis le serveur de build vers le serveur de production
+                script {
+                    echo 'Avant la commande scp'
+                    sh 'npm config ls'
+                    echo 'Après la commande scp'
+                }
+
             }
         }
-        stage("Build Project") {
 
-            steps{
-               sh "mv dist/  react/" 
-               sh "rsync -av dist ubuntu@52.47.136.150:/var/www/html/"
-            }
-        }
-        // stage("Deploy Project") {
-        //     steps{
-        //        // rename dist folder 
-        //         sh "mv dist/  react/" 
-        //        sh "rsync -av dist ubuntu@52.47.136.150:/var/www/html/"
-        //     }
-        // }
-
+        
     }
 }
-
-
-
-
