@@ -9,16 +9,17 @@ pipeline {
         stage("Build Project") {
 
             steps{
-               sh "npm run build"
-            }
-        }
-        stage("Deploy Project") {
-            steps{
-               // rename dist folder 
-                sh "mv dist/  react/" 
+               sh "mv dist/  react/" 
                sh "rsync -av dist ubuntu@52.47.136.150:/var/www/html/"
             }
         }
+        // stage("Deploy Project") {
+        //     steps{
+        //        // rename dist folder 
+        //         sh "mv dist/  react/" 
+        //        sh "rsync -av dist ubuntu@52.47.136.150:/var/www/html/"
+        //     }
+        // }
 
     }
 }
