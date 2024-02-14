@@ -9,8 +9,8 @@ pipeline {
                 // Envoyer le code source depuis le serveur de build vers le serveur de production
                 script {
                     echo 'Avant la commande scp'
-                    bat 'ssh -t amine@ns3173836.ip-51-195-234.eu'
-                    
+                    bat 'ssh -vvv -T name@ip-du-serveur "echo \'${MOT_DE_PASSE_SUDO}\' | sudo -S mv dist /var/www/html"'
+
                 }
 
             }
