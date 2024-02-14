@@ -10,8 +10,9 @@ pipeline {
                 script {
                     echo 'Avant la commande scp'
                      withCredentials([string(credentialsId: 'password-preprod', variable: 'MOT_DE_PASSE_SUDO')]) {
-                        bat 'pscp -r -pw AZamine12@@@@ -hostkey SHA256:QKBTBLa9aqO+BM1UciloehOEpEPoOfpNVEUZlJLaNPg dist amine@ns3173836.ip-51-195-234.eu:/home/amine'
-                        bat 'plink -ssh  -l amine -pw AZamine12@@@@  -hostkey SHA256:QKBTBLa9aqO+BM1UciloehOEpEPoOfpNVEUZlJLaNPg ns3173836.ip-51-195-234.eu "echo AZamine12@@@@ | sudo -S mv dist /var/www/html/"'
+                        echo "${MOT_DE_PASSE_SUDO}"
+                        bat "pscp -r -pw ${MOT_DE_PASSE_SUDO} -hostkey SHA256:QKBTBLa9aqO+BM1UciloehOEpEPoOfpNVEUZlJLaNPg dist amine@ns3173836.ip-51-195-234.eu:/home/amine"
+                        bat "plink -ssh  -l amine -pw AZamine12@@@@  -hostkey SHA256:QKBTBLa9aqO+BM1UciloehOEpEPoOfpNVEUZlJLaNPg ns3173836.ip-51-195-234.eu \"echo ${MOT_DE_PASSE_SUDO} | sudo -S mv dist /var/www/html/ \" "
                      }
                 }
 
